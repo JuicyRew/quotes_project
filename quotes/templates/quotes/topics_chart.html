@@ -1,0 +1,46 @@
+{% extends 'quotes/top_layout.html' %}
+{% block title %}Распределение цитат по темам{% endblock %}
+
+{% block top_content %}
+    <div class="d-flex justify-content-center"">
+      <canvas id="topicsChart" style="max-width: 75vh; max-height: 75vh;"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
+    <script>
+    const ctx = document.getElementById('topicsChart').getContext('2d');
+
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: {{ topics|safe }},
+            datasets: [{
+                label: 'Количество цитат',
+                data: {{ counts|safe }},
+                backgroundColor: ['#007bff','#28a745','#dc3545','#ffc107','#17a2b8']
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+                datalabels: {
+                    color: '#fff',
+                    formatter: (value, context) => {
+                        let label = context.chart.data.labels[context.dataIndex];
+                        return [label, value];
+                    },
+                    font: {
+                        weight: 'bold',
+                        size: 12
+                    }
+                }
+            }
+        },
+        plugins: [window.ChartDataLabels]  // <--- важно!
+    });
+    </script>
+
+{% endblock %}

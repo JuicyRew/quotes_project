@@ -1,0 +1,35 @@
+{% extends 'quotes/layout.html' %}
+
+{% block header %}Добавить новую цитату{% endblock %}
+
+{% block content %}
+<div class="card shadow p-4">
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label class="form-label">Текст цитаты</label>
+      {{ form.text }}
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Источник</label>
+      {{ form.source }}
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Тема</label>
+      {{ form.topic }}
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Вес</label>
+      {{ form.weight }}
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+  </form>
+    {% if form.non_field_errors or form.source.errors or form.text.errors %}
+      <div class="alert alert-danger mt-3">
+          {{ form.non_field_errors }}
+          {{ form.source.errors }}
+          {{ form.text.errors }}
+      </div>
+    {% endif %}
+</div>
+{% endblock %}

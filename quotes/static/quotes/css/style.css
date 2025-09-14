@@ -1,0 +1,66 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: #333;
+}
+
+/* Контейнер для цитаты */
+.quote-box {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Текст цитаты */
+.quote-text {
+    font-size: 1.5em;
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+/* Источник цитаты */
+.quote-source {
+    font-size: 1em;
+    color: #777;
+}
+
+/* Кнопки */
+button {
+    margin: 10px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Лайки и дизлайки */
+.like {
+    background-color: #4CAF50;
+}
+
+.dislike {
+    background-color: #f44336;
+}
+
+.counter {
+    margin-top: 15px;
+    font-size: 1.2em;
+    color: #555;
+}
+
+
+

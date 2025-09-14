@@ -1,0 +1,40 @@
+{% extends 'quotes/layout.html' %}
+
+{% block header %}ТОП цитат{% endblock %}
+
+{% block content %}
+    {% if active_page == "topics" %}
+        <h1>Распределение цитат</h1>
+    {% else %}
+        <h1>Топ цитат</h1>
+    {% endif %}
+    <br>
+    <div class="d-flex justify-content-center mb-3">
+      {% if active_page == "topics" %}
+        <a href="{% url 'top_quotes' %}?sort=likes" class="btn btn-outline-success me-2">По лайкам</a>
+        <a href="{% url 'top_quotes' %}?sort=dislikes" class="btn btn-outline-danger me-2">По дизлайкам</a>
+        <a href="{% url 'top_quotes' %}?sort=views" class="btn btn-outline-secondary me-2">По просмотрам</a>
+        <a href="{% url 'topics' %}" class="btn btn-info">По темам</a>
+      {% elif sort == "likes" %}
+        <a href="?sort=likes" class="btn btn-success me-2">По лайкам</a>
+        <a href="?sort=dislikes" class="btn btn-outline-danger me-2">По дизлайкам</a>
+        <a href="?sort=views" class="btn btn-outline-secondary me-2">По просмотрам</a>
+        <a href="{% url 'topics' %}" class="btn btn-outline-info">По темам</a>
+      {% elif sort == "dislikes" %}
+        <a href="?sort=likes" class="btn btn-outline-success me-2">По лайкам</a>
+        <a href="?sort=dislikes" class="btn btn-danger me-2">По дизлайкам</a>
+        <a href="?sort=views" class="btn btn-outline-secondary me-2">По просмотрам</a>
+        <a href="{% url 'topics' %}" class="btn btn-outline-info">По темам</a>
+      {% else %}
+        <a href="?sort=likes" class="btn btn-outline-success me-2">По лайкам</a>
+        <a href="?sort=dislikes" class="btn btn-outline-danger me-2">По дизлайкам</a>
+        <a href="?sort=views" class="btn btn-secondary me-2">По просмотрам</a>
+        <a href="{% url 'topics' %}" class="btn btn-outline-info">По темам</a>
+      {% endif %}
+    </div>
+    <br>
+
+    {% block top_content %}
+    {% endblock %}
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'quotes/top_layout.html' %}
+
+{% block title %}ТОП цитат{% endblock %}
+
+{% block top_content %}
+
+    {% for quote in quotes %}
+    <div class="card mb-3 shadow-sm">
+      <div class="card-body">
+        <blockquote class="blockquote mb-2">
+          <p>“{{ quote.text }}”</p>
+          <footer class="blockquote-footer">{{ quote.source }} | <span class="badge bg-info">{{ quote.get_topic_display }}</span></footer>
+        </blockquote>
+
+        <!-- Столбцы рейтинга -->
+
+        <div class="d-flex align-items-end">
+          <!-- лайки -->
+          <div class="d-flex flex-column align-items-center me-2">
+            <div class="bg-success" style="width: 30px; height: {{ quote.likes|add:1 }}px;"></div>
+            <small class="mt-1">👍 {{ quote.likes }}</small>
+          </div>
+
+          <!-- дизлайки -->
+          <div class="d-flex flex-column align-items-center me-2">
+            <div class="bg-danger" style="width: 30px; height: {{ quote.dislikes|add:1 }}px;"></div>
+            <small class="mt-1">👎 {{ quote.dislikes }}</small>
+          </div>
+
+          <!-- просмотры -->
+          <div class="d-flex flex-column align-items-center">
+            <div class="bg-secondary" style="width: 30px; height: {{ quote.views|add:1 }}px;"></div>
+            <small class="mt-1">👁 {{ quote.views }}</small>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    {% endfor %}
+
+{% endblock %}
